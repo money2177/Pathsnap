@@ -23,6 +23,21 @@ pnpm build
 pnpm preview
 ```
 
+## Load the evaluator set
+
+On the backend machine, set `PATHSNAP_EVAL_DIR` to the extracted folder containing the
+numbered trip directories. For the supplied archive, select the inner `evaluator_test`
+folder. The `__MACOSX` directory and files starting with `._` are archive metadata.
+
+```powershell
+$env:PATHSNAP_EVAL_DIR = 'C:\path\to\evaluator_test\evaluator_test'
+python -m api
+```
+
+After restarting the backend, click **Refresh trip list**. The dashboard shows the
+dataset name and trip count returned by the backend. Confirm **evaluator_test · 10 trips**
+before running predictions on the supplied set.
+
 ## Evaluation behaviour
 
 Select a trip to preview its GPS observations. Every Run action sends a fresh POST /predict.

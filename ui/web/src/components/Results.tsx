@@ -1,3 +1,4 @@
+import { formatTripDuration } from '../utils/time';
 import { ChevronDown, Check, Activity } from 'lucide-react';
 import type { Prediction } from '../types';
 const percent = (value?: number) => value === undefined ? '—' : (value * 100).toFixed(1) + '%';
@@ -16,12 +17,12 @@ export default function Results({ result }: { result: Prediction }) {
   </> : <p className="unscored">{metrics === null ? 'Prediction complete. No reference available on the server, so this trip is unscored.' : 'The server did not return evaluation metrics.'}</p>}
   <div className="result-stats">
    {result.route_length_m !== undefined && <div><strong>{(result.route_length_m / 1000).toFixed(2)} <small>km</small></strong><span>Route distance</span></div>}
-   {result.timings?.total_ms !== undefined && <div><strong>{result.timings.total_ms.toFixed(0)} <small>ms</small></strong><span>Processing time</span></div>}
+   {result.timings?.total_ms !== undefined && <div><strong>{result.timings.total_ms.toFixed(0)} <small>ms</small></strong><span>Backend processing time</span></div>}
   </div>
   <details className="result-details"><summary>Detailed results <ChevronDown size={15}/></summary>
    <dl>
     <div><dt>GPS observations</dt><dd>{result.n_points.toLocaleString()}</dd></div>
-    {result.duration_s !== undefined && <div><dt>Trip duration</dt><dd>{result.duration_s.toFixed(1)} s</dd></div>}
+    {result.duration_s !== undefined && <div><dt>Recorded trip duration</dt><dd>{formatTripDuration(result.duration_s)}</dd></div>}
     {result.n_route_segments !== undefined && <div><dt>Route segments</dt><dd>{result.n_route_segments}</dd></div>}
     {metricLabels.map(([key,label]) => metrics?.[key] !== undefined && <div key={key}><dt>{label}</dt><dd>{percent(metrics[key])}</dd></div>)}
    </dl>

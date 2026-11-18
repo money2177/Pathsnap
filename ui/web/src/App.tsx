@@ -1,3 +1,4 @@
+import { formatTripDuration } from './utils/time';
 import { useState } from 'react';
 import { ArrowUpRight, Check, ChevronDown, Layers3, LoaderCircle, LocateFixed, MapPin, Navigation, RefreshCw, Route, Settings2, WifiOff } from 'lucide-react';
 import { useEvaluator } from './hooks/useEvaluator';
@@ -34,6 +35,11 @@ export default function App() {
      <div className="card-heading"><span className="eyebrow">ROUTE EXPLORER</span><span className="subtle-icon"><Navigation size={16}/></span></div>
      <h1>Route evaluation</h1>
      <p className="intro">Select a trip, then run a live reconstruction.</p>
+     {connected && evaluator.health && <p className="hint">
+      Dataset <strong>{evaluator.health.eval_set}</strong> · {evaluator.trips.length} trips
+      {evaluator.health.scoring_available === true && ' · Scoring available'}
+      {evaluator.health.scoring_available === false && ' · Scoring unavailable for at least one trip'}
+     </p>}
      <label htmlFor="trip">Evaluation trip</label>
      <div className="select-row"><div className="select-wrap">
       <MapPin size={16}/><select id="trip" value={evaluator.tripId} onChange={e => evaluator.chooseTrip(e.target.value)} disabled={!connected || !evaluator.trips.length}>
@@ -41,8 +47,8 @@ export default function App() {
       </select><ChevronDown size={14}/></div>
       <button className="icon-button refresh" aria-label="Refresh trip list" title="Refresh trip list" onClick={evaluator.refresh} disabled={busy || evaluator.connection === 'checking'}><RefreshCw size={16} className={evaluator.connection === 'checking' ? 'spin' : ''}/></button>
      </div>
-     {trip && <div className="trip-facts"><div><strong>{trip.n_points.toLocaleString()}</strong><span>GPS points</span></div>{trip.duration_s !== undefined && <div><strong>{trip.duration_s.toLocaleString(undefined,{maximumFractionDigits:1})}<small> s</small></strong><span>Trip duration</span></div>}</div>}
-     {connected && !evaluator.trips.length && <p className="hint">No evaluation trips found. Check the folder served by Laptop 1, then refresh.</p>}
+     {trip && <div className="trip-facts"><div><strong>{trip.n_points.toLocaleString()}</strong><span>GPS points</span></div>{trip.duration_s !== undefined && <div><strong>{formatTripDuration(trip.duration_s)}</strong><span>Recorded trip duration</span></div>}</div>}
+     {connected && !evaluator.trips.length && <p className="hint">No evaluation trips found. Verify the backend points to the folder containing trip directories, then refresh.</p>}
      <button className="primary run-button" onClick={evaluator.run} disabled={!connected || !trip || busy || loading}>
       {busy ? <LoaderCircle size={17} className="spin"/> : <Route size={17}/>}
       {busy ? 'Reconstructing route' : 'Run map-matching'}
@@ -56,7 +62,7 @@ export default function App() {
      <button className="text-button" onClick={() => setSettings(true)}>Connection settings <ArrowUpRight size={14}/></button>
      <details><summary>View error details</summary><p>{evaluator.connectionError}</p></details>
     </section>}
-    {connected && evaluator.health && <div className="model-caption"><span className="status-dot"/><span>{evaluator.health.eval_set}<small>{evaluator.health.model}</small></span></div>}
+    {connected && evaluator.health && <div className="model-caption"><span className="status-dot"/><span>{evaluator.health.model}</span></div>}
    </div>
    {!evaluator.track && !busy && !loading && <div className="map-empty"><span className="empty-icon"><LocateFixed size={23}/></span><strong>Select a trip to explore its route.</strong><span>GPS observations appear after selection.</span></div>}
    <div className="right-stack">
