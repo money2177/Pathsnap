@@ -1,0 +1,11 @@
+numpy
+pandas
+matplotlib
+seaborn
+folium
+networkx
+scipy
+scikit-learn
+pyproj
+shapely>=2.0
+jupyter
