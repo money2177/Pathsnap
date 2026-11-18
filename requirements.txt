@@ -13,3 +13,7 @@ optuna
 pyarrow
 joblib
 lightgbm
+fastapi
+uvicorn[standard]
+httpx
+pytest

@@ -99,7 +99,7 @@ def build_trip_features(trip: Trip, radius_m: float = 50.0, k: int = 12, with_la
     for name, off in [("dist_prev1", -1), ("dist_prev2", -2), ("dist_next1", 1), ("dist_next2", 2)]:
         j = np.clip(pi + off, 0, n - 1)
         c[name] = shapely.distance(g.points[j], lines)
-    c["ctx_mean_dist"] = c[["dist", "dist_prev1", "dist_prev2", "dist_next1", "dist_next2"]].mean(1)
+    c["ctx_mean_dist"] = c[["dist", "dist_prev1", "dist_prev2", "dist_next1", "dist_next2"]].mean(axis=1)
 
     # --- topology ---
     u, v = g.arcs[arc, 0], g.arcs[arc, 1]

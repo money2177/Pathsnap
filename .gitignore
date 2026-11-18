@@ -25,3 +25,4 @@ outputs/models/compare/*.joblib
 outputs/models/tuning/*.joblib
 outputs/models/tuning_lgbm/*.joblib
 outputs/hmm/train_oof.parquet
+api/logs/

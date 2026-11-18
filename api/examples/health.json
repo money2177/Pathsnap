@@ -1,0 +1,9 @@
+{
+    "status": "ok",
+    "model": "HistGradientBoostingClassifier (tuned) + HMM/Viterbi",
+    "artifact_version": 1,
+    "artifacts_created": "2026-11-18 15:26:49",
+    "eval_set": "student_test",
+    "n_trips": 10,
+    "scoring_available": true
+}

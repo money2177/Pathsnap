@@ -18,7 +18,7 @@ import pandas as pd
 from sklearn.metrics import (accuracy_score, confusion_matrix, f1_score, log_loss,
                              precision_score, recall_score)
 
-from .data_io import Trip
+from .data_io import DATA_ROOT, Trip
 
 
 def row_metrics(y: np.ndarray, p: np.ndarray, thr: float = 0.5) -> dict:
@@ -53,17 +53,17 @@ class _Topo:
     cache: dict = {}
 
     @classmethod
-    def get(cls, trip_id: str, partition: str):
-        key = (trip_id, partition)
+    def get(cls, trip_id: str, partition: str, root: str = DATA_ROOT):
+        key = (trip_id, partition, root)
         if key not in cls.cache:
-            a = Trip(trip_id, partition).arcs.to_numpy()
+            a = Trip(trip_id, partition, root).arcs.to_numpy()
             succ = pd.Series(a[:, 1]).groupby(a[:, 0]).apply(set).to_dict()
             cls.cache[key] = (a, succ)
         return cls.cache[key]
 
 
-def continuity(arcs_seq: np.ndarray, trip_id: str, partition: str) -> float:
-    a, succ = _Topo.get(trip_id, partition)
+def continuity(arcs_seq: np.ndarray, trip_id: str, partition: str, root: str = DATA_ROOT) -> float:
+    a, succ = _Topo.get(trip_id, partition, root)
     p, n = arcs_seq[:-1], arcs_seq[1:]
     same = p == n
     vp, un = a[p, 1], a[n, 0]

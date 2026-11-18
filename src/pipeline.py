@@ -140,7 +140,7 @@ def score_prediction(reference: Trip, pred: dict) -> dict:
     ok_clf = g.canonical[pts.arc_id_classifier.to_numpy()] == true_arc
     from .evaluation import continuity
     return {"top1_accuracy": float(ok.mean()), "top1_accuracy_classifier_only": float(ok_clf.mean()),
-            "route_continuity": continuity(pts.arc_id.to_numpy(), reference.trip_id, reference.partition),
+            "route_continuity": continuity(pts.arc_id.to_numpy(), reference.trip_id, reference.partition, reference.root),
             **H.route_overlap(g, pred["route_arcs"], reference.route),
             "point_correct": ok.astype(int).tolist(),
             "reference_route_arcs": [int(a) for a in reference.route]}

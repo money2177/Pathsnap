@@ -19,7 +19,7 @@ evaluator UI on another.
 | 6 | Bayesian hyperparameter optimisation | Done: `notebooks/04_tuning.ipynb` (HGB tuned; LightGBM search for comparison) |
 | 7 | HMM and Viterbi route reconstruction | Done: `notebooks/05_hmm.ipynb` (Top-1 0.8805 → 0.9203, route F1 0.82 → 0.95 on student_test) |
 | 8 | Export model and artifacts | Done: `artifacts/` (verified: reproduces student_test Top-1 0.9203 from a fresh load) |
-| 9 | FastAPI backend (Laptop 1) | Not started |
+| 9 | FastAPI backend (Laptop 1) | Done: `api/` (contract for the UI: `api/API.md`; 20 tests in `tests/`) |
 | 10 | Evaluator UI (Laptop 2) | Not started |
 | 11 | Integration testing | Not started |
 | 12 | Technical report | Not started |
@@ -61,6 +61,8 @@ pathsnap/
 │   ├── features/         # sweep results, config.json, figures, maps (parquet tables are rebuilt, not committed)
 │   ├── models/           # compare/ (stage 4), tuning/ and tuning_lgbm/ (stage 6)
 │   └── hmm/              # stage 7: hmm_config.json, comparison tables, figures, Folium maps
+├── api/                  # FastAPI backend (Laptop 1): main.py, schemas.py, API.md (UI contract), examples/
+├── tests/                # API tests (pytest)
 ├── artifacts/            # final model, config, manifest, verification (see artifacts/README.md)
 ├── data/                 # raw dataset (not committed, see below)
 ├── requirements.txt
@@ -125,6 +127,39 @@ Then run notebooks `03` to `05` to rebuild the tables, figures and maps.
 ```bash
 python scripts/export_artifacts.py     # stage 8: export to artifacts/ and verify (about 10 s)
 ```
+
+## Running the API (Laptop 1)
+
+```bash
+source .venv/bin/activate
+python -m api                        # serves on all interfaces, port 8000; prints the address for Laptop 2
+python -m api --port 8001            # if port 8000 is taken
+```
+
+On start-up the server prints its LAN address. It also checks the artifacts' checksums, lists the trips it serves and says
+whether reference routes are available for scoring. Every request is logged to the terminal and to `api/logs/api.log`
+(client IP, trip, accuracy, timings): this is the log the evaluator wants to see.
+
+Which trips are served is set by an environment variable. On evaluation day, point it at the folder with the reserved trips:
+
+```bash
+export PATHSNAP_EVAL_DIR="/path/to/evaluation_trips"   # one sub-folder per trip: <id>/<id>.track, .nodes, .arcs (+ .route for scoring)
+python -m api
+```
+
+`.route` files are read only by the server-side scoring step; prediction cannot access them (`src/pipeline.InferenceTrip`).
+
+Endpoints: `GET /health`, `GET /trips`, `GET /trips/{id}/track`, `POST /predict`. See [`api/API.md`](api/API.md) for the full
+contract and `http://<ip>:8000/docs` for interactive docs.
+
+Tests: `python -m pytest tests/ -q`. They check all 10 student_test trips against the stage-8 verification, that no ground
+truth leaks, that bad or path-traversal trip ids are rejected, and that trips without a `.route` file are predicted but unscored.
+
+### Connecting the laptops
+1. Put both laptops on the **same network**. Campus Wi-Fi often blocks traffic between devices; a phone hotspot is the reliable fallback.
+2. Start the API on Laptop 1 and note the printed address, e.g. `http://192.168.1.23:8000`.
+3. From Laptop 2, check it with `curl http://192.168.1.23:8000/health` or open `/docs` in a browser.
+4. If it times out: allow incoming connections for Python in Laptop 1's firewall (macOS: System Settings → Network → Firewall).
 
 ## Data partitions and leakage rules
 
