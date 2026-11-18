@@ -4,35 +4,35 @@
   "config": "L2, C=1.0, lbfgs, max_iter=2000, standardised",
   "loss": "Binary cross-entropy (log loss) + L2 penalty",
   "n_train_rows": 423491,
-  "train_time_s": 0.2313539981842041,
-  "inference_time_s": 0.007097721099853516,
-  "inference_ms_per_1k_rows": 0.04830846418140899,
+  "train_time_s": 0.2462141513824463,
+  "inference_time_s": 0.004950046539306641,
+  "inference_ms_per_1k_rows": 0.033690975254767,
   "confusion_matrix": [
     [
-      124932,
-      2872
+      124916,
+      2889
     ],
     [
-      3509,
-      15612
+      3531,
+      15589
     ]
   ],
   "history": null,
   "last_fold_train_metrics": {
-    "accuracy": 0.9544901357617733,
-    "precision": 0.8560696666168336,
-    "recall": 0.8066504197892601,
-    "macro_f1": 0.9021695954375737,
-    "log_loss": 0.13386234641075134,
-    "top1_accuracy": 0.8471594712182061
+    "accuracy": 0.9544784430805149,
+    "precision": 0.8558522880114774,
+    "recall": 0.8068031331886957,
+    "macro_f1": 0.9021552511902452,
+    "log_loss": 0.13392335176467896,
+    "top1_accuracy": 0.8466016845158412
   },
   "test": {
-    "accuracy": 0.9565696784073507,
-    "precision": 0.8446223761090673,
-    "recall": 0.8164844934888342,
-    "macro_f1": 0.9027065841820974,
-    "log_loss": 0.12313288450241089,
-    "top1_accuracy": 0.8499478079331941,
-    "route_continuity": 0.955509138381201
+    "accuracy": 0.9563042368555386,
+    "precision": 0.8436519103799113,
+    "recall": 0.8153242677824267,
+    "macro_f1": 0.9020963867522898,
+    "log_loss": 0.12336239218711853,
+    "top1_accuracy": 0.8486951983298539,
+    "route_continuity": 0.9557180156657964
   }
 }

@@ -1,14 +1,14 @@
 {
   "artifact_version": 1,
-  "created": "2026-11-18 15:26:49",
+  "created": "2026-11-18 16:02:34",
   "files": {
     "model/hgb_tuned.joblib": {
-      "sha256": "91c638880e96f35b8da8c549bf3333a980047b431609e6f9f4a0dcde83bad4c7",
-      "bytes": 3533157
+      "sha256": "b2a078ce85c25925bbe1ead5fa51368a5117ccf3d67d4f0507303da6502200f2",
+      "bytes": 3535621
     },
     "config.json": {
-      "sha256": "0c3a6810e1c7a5bed1aa1b79ac38e658d2511265ba943063ad3cc503ea422cb5",
-      "bytes": 2025
+      "sha256": "18df7dba689834385b9631324636e4a4ec20b154131a0cd9c1e0b8b87cd8f4b5",
+      "bytes": 2028
     }
   },
   "environment": {
@@ -30,9 +30,9 @@
     "evaluator_test_partition_used": false
   },
   "reference_metrics_student_test": {
-    "classifier_only_top1": 0.8805323590814196,
-    "hmm_top1": 0.9203027139874739,
-    "hmm_route_continuity": 0.9941508514329778,
-    "hmm_route_f1": 0.9546749096605175
+    "classifier_only_top1": 0.8813674321503131,
+    "hmm_top1": 0.9260960334029228,
+    "hmm_route_continuity": 0.9948296592501648,
+    "hmm_route_f1": 0.9618740264664535
   }
 }

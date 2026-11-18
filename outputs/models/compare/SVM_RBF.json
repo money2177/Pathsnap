@@ -4,35 +4,35 @@
   "config": "RBF, C=1.0, gamma='scale', Platt-scaled probabilities, standardised",
   "loss": "Hinge loss + L2 (probabilities via Platt sigmoid)",
   "n_train_rows": 19787,
-  "train_time_s": 4.624764919281006,
-  "inference_time_s": 11.335429191589355,
-  "inference_ms_per_1k_rows": 77.15112602749264,
+  "train_time_s": 4.567034006118774,
+  "inference_time_s": 11.463795900344849,
+  "inference_ms_per_1k_rows": 78.02481470372537,
   "confusion_matrix": [
     [
-      126085,
-      1719
+      126076,
+      1729
     ],
     [
-      4018,
-      15103
+      4046,
+      15074
     ]
   ],
   "history": null,
   "last_fold_train_metrics": {
-    "accuracy": 0.9600763142330137,
-    "precision": 0.9003511887302506,
-    "recall": 0.7999450611370936,
-    "macro_f1": 0.9121111758154393,
-    "log_loss": 0.12193136510818342,
-    "top1_accuracy": 0.8570113788487282
+    "accuracy": 0.9600490313100772,
+    "precision": 0.900472016183412,
+    "recall": 0.7995618607534305,
+    "macro_f1": 0.9120232304030031,
+    "log_loss": 0.12227273634723619,
+    "top1_accuracy": 0.8558888331102187
   },
   "test": {
-    "accuracy": 0.9609528671090692,
-    "precision": 0.8978123885388182,
-    "recall": 0.7898645468333246,
-    "macro_f1": 0.9090708572644745,
-    "log_loss": 0.12033745743652426,
-    "top1_accuracy": 0.8542275574112735,
-    "route_continuity": 0.9595822454308094
+    "accuracy": 0.9606942317508933,
+    "precision": 0.8971017080283282,
+    "recall": 0.7883891213389121,
+    "macro_f1": 0.9084247141758564,
+    "log_loss": 0.12029398003558534,
+    "top1_accuracy": 0.8537578288100208,
+    "route_continuity": 0.958798955613577
   }
 }

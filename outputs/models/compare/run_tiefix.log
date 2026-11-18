@@ -1,0 +1,82 @@
+15:44:04 train rows 423,491 (78 trips, 60,258 points); student_test rows 146,925
+15:44:04 === LogisticRegression ===
+15:44:05   fold 0: top1=0.8053 macroF1=0.8766 logloss=0.1705 cont=0.9461 (0.2s)
+15:44:08   fold 1: top1=0.8598 macroF1=0.9090 logloss=0.1181 cont=0.9351 (0.2s)
+15:44:10   fold 2: top1=0.9022 macroF1=0.9258 logloss=0.1147 cont=0.9682 (0.2s)
+15:44:11   fold 3: top1=0.8176 macroF1=0.8910 logloss=0.1415 cont=0.9535 (0.2s)
+15:44:13   fold 4: top1=0.7935 macroF1=0.8701 logloss=0.1773 cont=0.9557 (0.2s)
+15:44:13   TEST: top1=0.8487 macroF1=0.9021 logloss=0.1234 cont=0.9557 train=0.2s infer=0.00s
+15:44:13 === GaussianNB ===
+15:44:14   fold 0: top1=0.5708 macroF1=0.7778 logloss=1.8068 cont=0.8963 (0.6s)
+15:44:15   fold 1: top1=0.6034 macroF1=0.8065 logloss=1.3011 cont=0.8603 (0.6s)
+15:44:16   fold 2: top1=0.5618 macroF1=0.7900 logloss=1.6963 cont=0.9100 (0.6s)
+15:44:17   fold 3: top1=0.5933 macroF1=0.8018 logloss=1.4088 cont=0.9107 (0.6s)
+15:44:18   fold 4: top1=0.5430 macroF1=0.7801 logloss=1.9849 cont=0.9134 (0.6s)
+15:44:21   TEST: top1=0.5542 macroF1=0.7886 logloss=1.5383 cont=0.9066 train=0.7s infer=0.19s
+15:44:21 === KNN ===
+15:44:34   fold 0: top1=0.7989 macroF1=0.8790 logloss=0.2007 cont=0.9481 (0.0s)
+15:44:47   fold 1: top1=0.8715 macroF1=0.9156 logloss=0.1156 cont=0.9463 (0.0s)
+15:45:00   fold 2: top1=0.8998 macroF1=0.9283 logloss=0.1131 cont=0.9694 (0.0s)
+15:45:14   fold 3: top1=0.8156 macroF1=0.8962 logloss=0.1559 cont=0.9530 (0.0s)
+15:45:28   fold 4: top1=0.7923 macroF1=0.8703 logloss=0.2053 cont=0.9572 (0.0s)
+15:46:34   TEST: top1=0.8489 macroF1=0.9063 logloss=0.1278 cont=0.9578 train=0.0s infer=8.13s
+15:46:34 === SVM_RBF ===
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+15:46:59   fold 0: top1=0.8038 macroF1=0.8804 logloss=0.1625 cont=0.9489 (5.2s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+15:47:23   fold 1: top1=0.8769 macroF1=0.9185 logloss=0.1141 cont=0.9483 (4.7s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+15:47:47   fold 2: top1=0.9025 macroF1=0.9281 logloss=0.1071 cont=0.9669 (4.6s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+15:48:11   fold 3: top1=0.8204 macroF1=0.8968 logloss=0.1327 cont=0.9513 (4.5s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+15:48:32   fold 4: top1=0.7971 macroF1=0.8718 logloss=0.1766 cont=0.9591 (4.0s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+15:49:58   TEST: top1=0.8538 macroF1=0.9084 logloss=0.1203 cont=0.9588 train=4.6s infer=11.46s
+15:49:58 === RandomForest ===
+15:50:35   fold 0: top1=0.8199 macroF1=0.8959 logloss=0.1244 cont=0.9598 (36.1s)
+15:51:13   fold 1: top1=0.8894 macroF1=0.9326 logloss=0.0745 cont=0.9554 (38.1s)
+15:51:54   fold 2: top1=0.9204 macroF1=0.9530 logloss=0.0655 cont=0.9749 (40.2s)
+15:52:39   fold 3: top1=0.8339 macroF1=0.9123 logloss=0.0980 cont=0.9597 (43.4s)
+15:53:30   fold 4: top1=0.8096 macroF1=0.8862 logloss=0.1339 cont=0.9642 (50.2s)
+15:54:36   TEST: top1=0.8730 macroF1=0.9250 logloss=0.0827 cont=0.9618 train=62.5s infer=0.48s
+15:54:38 === HistGradientBoosting ===
+15:54:41   fold 0: top1=0.8174 macroF1=0.8937 logloss=0.1332 cont=0.9543 (2.4s)
+15:54:44   fold 1: top1=0.8909 macroF1=0.9316 logloss=0.0797 cont=0.9557 (2.4s)
+15:54:46   fold 2: top1=0.9195 macroF1=0.9523 logloss=0.0668 cont=0.9727 (2.3s)
+15:54:49   fold 3: top1=0.8335 macroF1=0.9101 logloss=0.1052 cont=0.9568 (2.3s)
+15:54:52   fold 4: top1=0.8088 macroF1=0.8861 logloss=0.1359 cont=0.9633 (2.5s)
+15:54:56   TEST: top1=0.8722 macroF1=0.9247 logloss=0.0875 cont=0.9599 train=3.0s infer=0.12s
+15:54:56 === LightGBM ===
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+15:55:02   fold 0: top1=0.8187 macroF1=0.8943 logloss=0.1266 cont=0.9623 (5.4s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+15:55:06   fold 1: top1=0.8944 macroF1=0.9332 logloss=0.0734 cont=0.9602 (3.1s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+15:55:13   fold 2: top1=0.9242 macroF1=0.9547 logloss=0.0600 cont=0.9763 (6.3s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+15:55:21   fold 3: top1=0.8365 macroF1=0.9112 logloss=0.0961 cont=0.9616 (6.6s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+15:55:26   fold 4: top1=0.8121 macroF1=0.8870 logloss=0.1331 cont=0.9658 (4.4s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/lightgbm/sklearn.py:1106: LGBMDeprecationWarning: The argument 'eval_set' is deprecated, use 'eval_X' and 'eval_y' instead.
+  eval_set = _validate_eval_set_Xy(eval_set=eval_set, eval_X=eval_X, eval_y=eval_y)
+15:55:31   TEST: top1=0.8733 macroF1=0.9260 logloss=0.0812 cont=0.9625 train=3.2s infer=0.16s
+15:55:32 === MLP ===
+15:55:42   fold 0: top1=0.8160 macroF1=0.8889 logloss=0.1356 cont=0.9598 (10.0s)
+15:55:45   fold 1: top1=0.8858 macroF1=0.9271 logloss=0.0808 cont=0.9582 (3.5s)
+15:55:51   fold 2: top1=0.9179 macroF1=0.9476 logloss=0.0701 cont=0.9745 (5.3s)
+15:56:00   fold 3: top1=0.8298 macroF1=0.9062 logloss=0.1070 cont=0.9617 (9.4s)
+15:56:04   fold 4: top1=0.8027 macroF1=0.8811 logloss=0.1463 cont=0.9668 (4.2s)
+15:56:17   TEST: top1=0.8725 macroF1=0.9211 logloss=0.0845 cont=0.9672 train=11.8s infer=0.01s
+15:56:17 done

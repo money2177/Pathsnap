@@ -17,8 +17,8 @@ evaluator UI on another.
 | 4 | Train and compare at least 5 models | Done: `notebooks/03_models.ipynb` (8 models) |
 | 5 | Select the best model | Done: HistGradientBoosting (`03_models.ipynb` section 7) |
 | 6 | Bayesian hyperparameter optimisation | Done: `notebooks/04_tuning.ipynb` (HGB tuned; LightGBM search for comparison) |
-| 7 | HMM and Viterbi route reconstruction | Done: `notebooks/05_hmm.ipynb` (Top-1 0.8805 → 0.9203, route F1 0.82 → 0.95 on student_test) |
-| 8 | Export model and artifacts | Done: `artifacts/` (verified: reproduces student_test Top-1 0.9203 from a fresh load) |
+| 7 | HMM and Viterbi route reconstruction | Done: `notebooks/05_hmm.ipynb` (Top-1 0.8814 → 0.9261, route F1 0.82 → 0.96 on student_test) |
+| 8 | Export model and artifacts | Done: `artifacts/` (verified: reproduces student_test Top-1 0.9261 from a fresh load) |
 | 9 | FastAPI backend (Laptop 1) | Done: `api/` (contract for the UI: `api/API.md`; 20 tests in `tests/`) |
 | 10 | Evaluator UI (Laptop 2) | Not started |
 | 11 | Integration testing | Not started |

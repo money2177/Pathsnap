@@ -72,7 +72,9 @@ def generate_candidates(g: TripGraph, radius_m: float = 50.0, k: int = 12, k_fal
         df = pd.concat([df, pd.DataFrame({"point_idx": missing[mi], "arc_id": g.eligible[mt],
                                           "dist": md, "fallback": True})], ignore_index=True)
 
-    df = df.sort_values(["point_idx", "dist"], kind="stable")
+    # arc_id breaks exact distance ties (the two directions of a two-way road have identical geometry),
+    # so candidate order, dist_rank and the k cut-off are defined by the data, not by the spatial index.
+    df = df.sort_values(["point_idx", "dist", "arc_id"], kind="stable")
     df["dist_rank"] = df.groupby("point_idx").cumcount()
     df = df[df.dist_rank < np.where(df.fallback, k_fallback, k)].reset_index(drop=True)
     return df

@@ -4,35 +4,35 @@
   "config": "300 trees, max_depth=None, min_samples_leaf=5, max_features='sqrt'",
   "loss": "Gini impurity (greedy splits)",
   "n_train_rows": 423491,
-  "train_time_s": 62.8009889125824,
-  "inference_time_s": 0.42228198051452637,
-  "inference_ms_per_1k_rows": 2.874132928463681,
+  "train_time_s": 62.50059914588928,
+  "inference_time_s": 0.47518014907836914,
+  "inference_ms_per_1k_rows": 3.2341681067100163,
   "confusion_matrix": [
     [
-      125926,
-      1878
+      125939,
+      1866
     ],
     [
-      2996,
-      16125
+      2998,
+      16122
     ]
   ],
   "history": null,
   "last_fold_train_metrics": {
-    "accuracy": 0.9731545782206272,
-    "precision": 0.9239376088325738,
-    "recall": 0.8782470276666479,
-    "macro_f1": 0.9424984924555946,
-    "log_loss": 0.07143934231999469,
-    "top1_accuracy": 0.8997866465863453
+    "accuracy": 0.9731117050560129,
+    "precision": 0.9233035509397369,
+    "recall": 0.8786030261192979,
+    "macro_f1": 0.9424284166243728,
+    "log_loss": 0.07122700889816441,
+    "top1_accuracy": 0.8998424252565819
   },
   "test": {
-    "accuracy": 0.9668266122171176,
-    "precision": 0.8956840526578903,
-    "recall": 0.8433136342241515,
-    "macro_f1": 0.9248625233459654,
-    "log_loss": 0.08337518738904706,
-    "top1_accuracy": 0.8705114822546973,
-    "route_continuity": 0.9630287206266318
+    "accuracy": 0.9668946741534796,
+    "precision": 0.8962641761174116,
+    "recall": 0.8432008368200837,
+    "macro_f1": 0.9249890272067325,
+    "log_loss": 0.08267137310864496,
+    "top1_accuracy": 0.872964509394572,
+    "route_continuity": 0.9617754569190601
   }
 }

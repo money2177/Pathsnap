@@ -4,35 +4,35 @@
   "config": "var_smoothing=1e-9, quantile-normal transformed inputs",
   "loss": "Maximum likelihood of class-conditional Gaussians",
   "n_train_rows": 423491,
-  "train_time_s": 0.7400360107421875,
-  "inference_time_s": 0.19895172119140625,
-  "inference_ms_per_1k_rows": 1.3541039386857667,
+  "train_time_s": 0.7261340618133545,
+  "inference_time_s": 0.19345903396606445,
+  "inference_ms_per_1k_rows": 1.316719645846959,
   "confusion_matrix": [
     [
-      111293,
-      16511
+      111266,
+      16539
     ],
     [
-      1785,
-      17336
+      1817,
+      17303
     ]
   ],
   "history": null,
   "last_fold_train_metrics": {
-    "accuracy": 0.8751397031812862,
-    "precision": 0.5286960057085014,
-    "recall": 0.8976094551191751,
-    "macro_f1": 0.7943452277996692,
-    "log_loss": 1.5673915147781372,
-    "top1_accuracy": 0.5818342815707274
+    "accuracy": 0.875056880022372,
+    "precision": 0.5284918425844882,
+    "recall": 0.8974317432588543,
+    "macro_f1": 0.7942141936309797,
+    "log_loss": 1.5716164112091064,
+    "top1_accuracy": 0.5825594042838019
   },
   "test": {
-    "accuracy": 0.875473881231921,
-    "precision": 0.512187195320117,
-    "recall": 0.9066471418858846,
-    "macro_f1": 0.7893148490353682,
-    "log_loss": 1.5425536632537842,
-    "top1_accuracy": 0.5514613778705637,
-    "route_continuity": 0.9047519582245431
+    "accuracy": 0.8750655096137485,
+    "precision": 0.5112877489510076,
+    "recall": 0.9049686192468619,
+    "macro_f1": 0.7886052460094998,
+    "log_loss": 1.5383411645889282,
+    "top1_accuracy": 0.5542275574112735,
+    "route_continuity": 0.906579634464752
   }
 }

@@ -1,23 +1,27 @@
-15:18:30 train lattices: 78 trips (14s)
-15:18:32 student_test lattices: 10 trips (1.4s)
-15:18:33 trial 0: 0.9062 {'emission_weight': 1.0, 'beta': 20.0, 'break_cost': 30.0, 'uturn_cost': 2.0, 'gap_s': 60.0}
-15:18:44 trial 6: 0.9123 {'emission_weight': 2.157696745589682, 'beta': 5.0162313720904645, 'break_cost': 10.890275402351124, 'uturn_cost': 17.772437065861276, 'gap_s': 12.094721136844784}
-15:18:51 trial 10: 0.9146 {'emission_weight': 1.3353819088790582, 'beta': 8.403344108745058, 'break_cost': 11.277639166461563, 'uturn_cost': 16.40130838029839, 'gap_s': 21.31567948102871}
-15:19:08 trial 20: 0.9163 {'emission_weight': 0.8638074155433437, 'beta': 16.417090487367894, 'break_cost': 14.696324335234774, 'uturn_cost': 25.448786766995426, 'gap_s': 51.98761850999273}
-15:19:25 trial 30: 0.9162 {'emission_weight': 0.49720956469215905, 'beta': 37.030679954981004, 'break_cost': 8.021178020835919, 'uturn_cost': 25.464646597153966, 'gap_s': 50.148406065523695}
-15:19:42 trial 40: 0.9162 {'emission_weight': 0.6766128036620945, 'beta': 63.341237349237524, 'break_cost': 9.071259381834622, 'uturn_cost': 28.296934394305502, 'gap_s': 22.658870244047442}
-15:19:44 trial 41: 0.9166 {'emission_weight': 0.6237482714458592, 'beta': 61.09101896633328, 'break_cost': 7.239812170080723, 'uturn_cost': 29.08271038704736, 'gap_s': 38.61545291327345}
-15:19:59 trial 50: 0.9162 {'emission_weight': 0.44996127828301735, 'beta': 94.8507953932228, 'break_cost': 6.75477670352617, 'uturn_cost': 27.910440129567554, 'gap_s': 37.201364882055344}
-15:20:01 trial 51: 0.9169 {'emission_weight': 0.4006045477292536, 'beta': 98.2142696298022, 'break_cost': 4.702373002909085, 'uturn_cost': 27.83587925352604, 'gap_s': 33.80929401803669}
-15:20:03 trial 52: 0.9179 {'emission_weight': 0.35832967131956317, 'beta': 66.68254704239685, 'break_cost': 3.346448151591423, 'uturn_cost': 29.362850449398252, 'gap_s': 44.08423700357887}
-15:20:04 trial 53: 0.9187 {'emission_weight': 0.488855003797626, 'beta': 60.302936144790216, 'break_cost': 5.659305404752567, 'uturn_cost': 27.4834301558456, 'gap_s': 57.727620239780336}
-15:20:15 BEST train-OOF top1 0.9187 {'emission_weight': 0.488855003797626, 'beta': 60.302936144790216, 'break_cost': 5.659305404752567, 'uturn_cost': 27.4834301558456, 'gap_s': 57.727620239780336} (1.7 min)
-15:20:45 train_oof    classifier_only          top1=0.8595 cont=0.9679 conn=0.9808 routeF1=0.7472
-15:20:54 train_oof    hmm_geometric_emission   top1=0.9080 cont=0.9875 conn=0.9908 routeF1=0.8676
-15:20:56 train_oof    hmm_default_params       top1=0.9062 cont=0.9934 conn=0.9958 routeF1=0.9222
-15:20:58 train_oof    hmm_tuned                top1=0.9187 cont=0.9922 conn=0.9941 routeF1=0.9122
-15:21:03 student_test classifier_only          top1=0.8805 cont=0.9691 conn=0.9862 routeF1=0.8217
-15:21:04 student_test hmm_geometric_emission   top1=0.8971 cont=0.9891 conn=0.9980 routeF1=0.9139
-15:21:04 student_test hmm_default_params       top1=0.9128 cont=0.9955 conn=0.9994 routeF1=0.9688
-15:21:05 student_test hmm_tuned                top1=0.9203 cont=0.9942 conn=0.9986 routeF1=0.9547
-15:21:05 done
+15:57:50 OOF fold 0: 257309 rows (23s)
+15:58:13 OOF fold 1: 253155 rows (23s)
+15:58:36 OOF fold 2: 255988 rows (23s)
+15:58:58 OOF fold 3: 259831 rows (22s)
+15:59:19 OOF fold 4: 255301 rows (22s)
+15:59:32 train lattices: 78 trips (13s)
+15:59:34 student_test lattices: 10 trips (1.4s)
+15:59:36 trial 0: 0.9056 {'emission_weight': 1.0, 'beta': 20.0, 'break_cost': 30.0, 'uturn_cost': 2.0, 'gap_s': 60.0}
+15:59:47 trial 6: 0.9129 {'emission_weight': 2.157696745589682, 'beta': 5.0162313720904645, 'break_cost': 10.890275402351124, 'uturn_cost': 17.772437065861276, 'gap_s': 12.094721136844784}
+15:59:54 trial 10: 0.9146 {'emission_weight': 1.3353819088790582, 'beta': 8.403344108745058, 'break_cost': 11.277639166461563, 'uturn_cost': 16.40130838029839, 'gap_s': 21.31567948102871}
+16:00:11 trial 20: 0.9155 {'emission_weight': 0.8638074155433437, 'beta': 16.417090487367894, 'break_cost': 14.696324335234774, 'uturn_cost': 25.448786766995426, 'gap_s': 51.98761850999273}
+16:00:12 trial 21: 0.9160 {'emission_weight': 0.769708354261148, 'beta': 24.02329040242713, 'break_cost': 12.024918453178246, 'uturn_cost': 29.794617293513294, 'gap_s': 24.964515474410337}
+16:00:27 trial 30: 0.9149 {'emission_weight': 0.6368918318479432, 'beta': 16.33435854837809, 'break_cost': 9.746227670543089, 'uturn_cost': 22.453818193114543, 'gap_s': 55.420311440964966}
+16:00:39 trial 37: 0.9163 {'emission_weight': 0.5933970328219823, 'beta': 23.392390143814918, 'break_cost': 5.8912988353477385, 'uturn_cost': 28.41009123431313, 'gap_s': 24.66534599463904}
+16:00:44 trial 40: 0.9153 {'emission_weight': 0.8053773664944068, 'beta': 40.90741057719412, 'break_cost': 6.697209629410014, 'uturn_cost': 28.985296520368, 'gap_s': 13.893875481650666}
+16:00:46 trial 41: 0.9167 {'emission_weight': 0.5472465303932434, 'beta': 23.311550827674754, 'break_cost': 4.712660674658039, 'uturn_cost': 29.102507154173423, 'gap_s': 41.677693510348476}
+16:01:02 trial 50: 0.9164 {'emission_weight': 0.42179846317964476, 'beta': 37.32011724532092, 'break_cost': 5.1543586201122045, 'uturn_cost': 26.760861779416413, 'gap_s': 30.628464249867225}
+16:01:17 BEST train-OOF top1 0.9167 {'emission_weight': 0.5472465303932434, 'beta': 23.311550827674754, 'break_cost': 4.712660674658039, 'uturn_cost': 29.102507154173423, 'gap_s': 41.677693510348476} (1.7 min)
+16:01:51 train_oof    classifier_only          top1=0.8582 cont=0.9676 conn=0.9806 routeF1=0.7480
+16:01:59 train_oof    hmm_geometric_emission   top1=0.9054 cont=0.9884 conn=0.9886 routeF1=0.8514
+16:02:02 train_oof    hmm_default_params       top1=0.9056 cont=0.9934 conn=0.9958 routeF1=0.9225
+16:02:04 train_oof    hmm_tuned                top1=0.9167 cont=0.9924 conn=0.9929 routeF1=0.8984
+16:02:08 student_test classifier_only          top1=0.8814 cont=0.9685 conn=0.9855 routeF1=0.8179
+16:02:09 student_test hmm_geometric_emission   top1=0.9076 cont=0.9927 conn=0.9969 routeF1=0.9304
+16:02:10 student_test hmm_default_params       top1=0.9158 cont=0.9956 conn=0.9994 routeF1=0.9690
+16:02:10 student_test hmm_tuned                top1=0.9261 cont=0.9948 conn=0.9982 routeF1=0.9619
+16:02:10 done

@@ -26,7 +26,7 @@ Prediction uses `InferenceTrip`, which has no access to the reference route even
 server-side step.
 
 ## Verification (`python scripts/export_artifacts.py`)
-- Loaded fresh from these files, the pipeline reproduces stage 7 exactly: student_test Top-1 **0.9203** (classifier only 0.8805).
+- Loaded fresh from these files, the pipeline reproduces stage 7 exactly: student_test Top-1 **0.9261** (classifier only 0.8814).
   The decoded arc is identical for all 19,160 points.
 - About 0.4 s per trip (features, then classifier, then Viterbi, then route).
 - It gives the same output when the trip folder has no `.route` file.

@@ -127,7 +127,7 @@ class Lattice:
 
 def build_lattice(net: RoadNetwork, cands: pd.DataFrame, prob: np.ndarray) -> Lattice:
     """`cands`: candidate rows of one trip (point_idx, arc_id, proj_frac, dist[, y])."""
-    order = np.lexsort((-prob, cands.point_idx.to_numpy()))
+    order = np.lexsort((cands.arc_id.to_numpy(), -prob, cands.point_idx.to_numpy()))   # arc_id breaks probability ties
     c = cands.iloc[order]
     p = np.asarray(prob)[order]
     pts = c.point_idx.to_numpy()
