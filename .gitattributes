@@ -1,0 +1,2 @@
+# Exported artifacts are verified by SHA-256 checksum: never convert their line endings
+artifacts/** -text
