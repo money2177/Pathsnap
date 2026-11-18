@@ -20,9 +20,21 @@ evaluator UI on another.
 | 7 | HMM and Viterbi route reconstruction | Done: `notebooks/05_hmm.ipynb` (Top-1 0.8814 → 0.9261, route F1 0.82 → 0.96 on student_test) |
 | 8 | Export model and artifacts | Done: `artifacts/` (verified: reproduces student_test Top-1 0.9261 from a fresh load) |
 | 9 | FastAPI backend (Laptop 1) | Done: `api/` (contract for the UI: `api/API.md`; 20 tests in `tests/`) |
-| 10 | Evaluator UI (Laptop 2) | Not started |
-| 11 | Integration testing | Not started |
-| 12 | Technical report | Not started |
+| 10 | Evaluator UI (Laptop 2) | Done: `ui/web` (React, used in the demo) and `ui/app.py` (Streamlit) |
+| 11 | Integration testing | Done: two laptops on one network, live `/predict` requests logged on Laptop 1 |
+| 12 | Technical report | Done: `11_Report.pdf` |
+
+## Results (student_test, 10 trips, 19,160 GPS points)
+
+| System | Top-1 accuracy | Route continuity | Route F1 |
+|---|---|---|---|
+| Rule: nearest arc + heading | 0.8326 | – | – |
+| HistGradientBoosting, untuned | 0.8722 | 0.9599 | – |
+| HistGradientBoosting, tuned (classifier only) | 0.8814 | 0.9685 | 0.8179 |
+| **Tuned HistGradientBoosting + HMM/Viterbi (final)** | **0.9261** | **0.9948** | **0.9619** |
+
+Top-1 = share of GPS points matched to the correct road segment. The final pipeline is exported in `artifacts/`
+and reproduces these numbers exactly from a fresh load (`artifacts/verification.json`).
 
 ## Repository layout
 
@@ -44,7 +56,10 @@ pathsnap/
 │   ├── train_compare.py      # stage 4: 5-fold GroupKFold comparison of 8 models + student_test
 │   ├── tune_hgb.py           # stage 6: Optuna TPE tuning of HistGradientBoosting
 │   ├── tune_lgbm.py          # stage 6: LightGBM search (comparison)
+│   ├── refit_tuned.py        # refits the tuned HGB with the stage-6 parameters (after the tie-break fix)
+│   ├── observation_metrics.py # per-GPS-point Top-1, Top-3 and log loss for every model
 │   ├── hmm_decode.py         # stage 7: OOF probabilities, decoder tuning, HMM vs classifier
+│   ├── zoom_maps.py          # zoomed classifier-only vs HMM Folium maps for the report
 │   └── export_artifacts.py   # stage 8: writes and verifies artifacts/
 ├── notebooks/
 │   ├── 01_eda.ipynb      # dataset exploration (train + student_test partitions)
@@ -53,16 +68,14 @@ pathsnap/
 │   ├── 04_tuning.ipynb   # Bayesian optimisation (stage 6)
 │   └── 05_hmm.ipynb      # HMM / Viterbi route reconstruction (stage 7)
 ├── outputs/
-│   └── eda/
-│       ├── figures/      # PNG figures used in the report
-│       ├── maps/         # interactive Folium HTML maps
-│       ├── trip_summary.csv
-│       └── trip_flags.csv
+│   ├── eda/              # figures, interactive Folium maps, trip_summary.csv, trip_flags.csv
 │   ├── features/         # sweep results, config.json, figures, maps (parquet tables are rebuilt, not committed)
 │   ├── models/           # compare/ (stage 4), tuning/ and tuning_lgbm/ (stage 6)
 │   └── hmm/              # stage 7: hmm_config.json, comparison tables, figures, Folium maps
 ├── api/                  # FastAPI backend (Laptop 1): main.py, schemas.py, API.md (UI contract), examples/
+├── ui/                   # evaluator UI (Laptop 2): web/ (React + MapLibre), app.py (Streamlit + Folium)
 ├── tests/                # API tests (pytest)
+├── 11_Report.pdf         # technical report
 ├── artifacts/            # final model, config, manifest, verification (see artifacts/README.md)
 ├── data/                 # raw dataset (not committed, see below)
 ├── requirements.txt
@@ -119,7 +132,10 @@ Then run `notebooks/02_features.ipynb` the same way as the EDA notebook.
 ```bash
 python scripts/train_compare.py        # stage 4: 8 models, about 10 min
 python scripts/tune_hgb.py             # stage 6: HGB search, round 1 (then --stage2 for the refined round)
+python scripts/refit_tuned.py          # refit the tuned HGB with the saved best parameters (no new search)
 python scripts/hmm_decode.py           # stage 7: about 5 min (OOF probabilities, 60 decoder trials, evaluation)
+python scripts/observation_metrics.py  # per-point metrics table used in the report
+python scripts/zoom_maps.py            # zoomed comparison maps used in the report
 ```
 
 Then run notebooks `03` to `05` to rebuild the tables, figures and maps.
@@ -205,9 +221,9 @@ A shared hotspot can help if campus Wi-Fi blocks device-to-device traffic. HTTP 
 prediction timeouts should be checked against the Laptop 1 logs. An HTTPS frontend needs
 an HTTPS API or an appropriately configured proxy.
 
-If the Windows backend reports a checksum mismatch for artifacts/config.json, check that
-its checkout preserves the original LF line endings. The backend verifies artifact bytes
-before starting. This is a backend setup concern.
+The backend verifies the SHA-256 checksum of every artifact before starting. `.gitattributes` stops git from
+converting their line endings on Windows; a checkout made before that file was added needs a fresh clone
+(or `git rm --cached -r artifacts && git checkout -- artifacts`).
 
 OpenStreetMap basemap tiles require internet access. Route overlays can still appear if
 tiles fail. The React map requires WebGL and hardware acceleration in the browser.
@@ -219,10 +235,17 @@ evaluator interfaces, API integration, and verification.
 
 | Partition | Trips | Used for |
 |---|---|---|
-| `train` | 80 | fitting, group-aware cross-validation, Bayesian optimisation |
-| `student_test` | 10 | development-stage model comparison |
-| evaluator test | 10 | final evaluation only; never used during development |
+| `train` | 80 (78 used) | fitting, group-aware cross-validation, Bayesian optimisation, HMM decoder tuning. Trips 00000033 and 00000054 are excluded because their reference routes do not match their GPS (median label distance 122 m and 140 m; every other trip is at most 11 m) |
+| `student_test` | 10 | development-stage model comparison and reporting; never used to choose models or parameters |
+| evaluator test | 10 | final evaluation only. Not used for any development decision; loaded once, after the pipeline was frozen, for the two-laptop integration run. Never committed (`.gitignore`) |
 
 Ground-truth routes for evaluation trips stay server-side and are never sent to the model or the UI.
+
+## AI-assistance disclosure
+
+AI coding assistants were used in this project: Claude Code for the data pipeline, model training and evaluation
+code, the HMM decoder, the API and drafting parts of the documentation and report, and OpenAI Codex for the evaluator
+UI. All experiments were run by the team, every reported number is produced by code in this repository and can be
+regenerated from it, and the team reviewed the code, methods and results and can explain them.
 
 
