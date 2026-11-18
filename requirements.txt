@@ -5,7 +5,7 @@ seaborn
 folium
 networkx
 scipy
-scikit-learn
+scikit-learn==1.9.1   # pinned: artifacts/model/hgb_tuned.joblib was saved with this version
 pyproj
 shapely>=2.0
 jupyter

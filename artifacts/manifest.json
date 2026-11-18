@@ -1,0 +1,38 @@
+{
+  "artifact_version": 1,
+  "created": "2026-11-18 15:26:49",
+  "files": {
+    "model/hgb_tuned.joblib": {
+      "sha256": "91c638880e96f35b8da8c549bf3333a980047b431609e6f9f4a0dcde83bad4c7",
+      "bytes": 3533157
+    },
+    "config.json": {
+      "sha256": "0c3a6810e1c7a5bed1aa1b79ac38e658d2511265ba943063ad3cc503ea422cb5",
+      "bytes": 2025
+    }
+  },
+  "environment": {
+    "python": "3.14.8",
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.5",
+    "pandas": "3.1.1",
+    "shapely": "2.2.0",
+    "pyproj": "3.8.0",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0"
+  },
+  "note": "load with the same scikit-learn version (joblib pickles are version-specific)",
+  "provenance": {
+    "training_data": "train partition, 78 reliable trips (trips with median label distance > 30 m excluded), every 3rd GPS point with label within 50 m",
+    "model_selection": "stage 4-5, notebooks/03_models.ipynb",
+    "tuning": "stage 6, scripts/tune_hgb.py --stage2",
+    "decoder_tuning": "stage 7, scripts/hmm_decode.py (train out-of-fold probabilities only)",
+    "evaluator_test_partition_used": false
+  },
+  "reference_metrics_student_test": {
+    "classifier_only_top1": 0.8805323590814196,
+    "hmm_top1": 0.9203027139874739,
+    "hmm_route_continuity": 0.9941508514329778,
+    "hmm_route_f1": 0.9546749096605175
+  }
+}

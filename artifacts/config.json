@@ -1,0 +1,80 @@
+{
+  "artifact_version": 1,
+  "model": {
+    "file": "model/hgb_tuned.joblib",
+    "class": "sklearn.ensemble.HistGradientBoostingClassifier",
+    "params": {
+      "learning_rate": 0.03370962431306001,
+      "max_iter": 800,
+      "max_leaf_nodes": 84,
+      "min_samples_leaf": 65,
+      "l2_regularization": 0.030550893424685692,
+      "max_features": 0.6681237429283018
+    },
+    "output": "predict_proba[:, 1] = P(candidate arc is the true arc)"
+  },
+  "candidates": {
+    "radius_m": 50.0,
+    "k": 12,
+    "k_fallback": 3,
+    "fallback_radii_m": [
+      200.0,
+      1000.0
+    ],
+    "then": "single nearest arc"
+  },
+  "features": {
+    "names": [
+      "dist",
+      "dist_rank",
+      "dist_minus_min",
+      "dist_ratio_min",
+      "gauss_share",
+      "n_cands",
+      "proj_frac",
+      "dist_to_end_min",
+      "arc_len",
+      "heading_diff",
+      "heading_diff_undirected",
+      "heading_reliable",
+      "speed",
+      "accel",
+      "dt_prev",
+      "dt_next",
+      "turn_rate",
+      "dist_prev1",
+      "dist_prev2",
+      "dist_next1",
+      "dist_next2",
+      "ctx_mean_dist",
+      "from_out_deg",
+      "to_in_deg",
+      "to_out_deg",
+      "has_reverse"
+    ],
+    "constants": {
+      "SIGMA_M": 5.0,
+      "MIN_MOVE_M": 2.0
+    }
+  },
+  "hmm": {
+    "params": {
+      "emission_weight": 0.488855003797626,
+      "beta": 60.302936144790216,
+      "break_cost": 5.659305404752567,
+      "uturn_cost": 27.4834301558456,
+      "gap_s": 57.727620239780336,
+      "prob_floor": 0.0001
+    },
+    "constants": {
+      "BACKWARD_TOL_M": 8.0,
+      "ROUTE_FACTOR": 3.0,
+      "MIN_SEARCH_M": 400.0,
+      "MAX_SEARCH_M": 8000.0
+    },
+    "hidden_states": "candidate arcs of each GPS point",
+    "emission": "emission_weight * log(max(p, prob_floor))",
+    "transition": "-|network route distance - straight-line distance| / beta - uturn_cost * [reverse twin]; unreachable -> -break_cost; time gap > gap_s -> flat (chain split)"
+  },
+  "projection": "per-trip WGS84 UTM zone (src/data_io.utm_epsg)"
+}

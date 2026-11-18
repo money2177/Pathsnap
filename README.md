@@ -18,7 +18,7 @@ evaluator UI on another.
 | 5 | Select the best model | Done: HistGradientBoosting (`03_models.ipynb` section 7) |
 | 6 | Bayesian hyperparameter optimisation | Done: `notebooks/04_tuning.ipynb` (HGB tuned; LightGBM search for comparison) |
 | 7 | HMM and Viterbi route reconstruction | Done: `notebooks/05_hmm.ipynb` (Top-1 0.8805 → 0.9203, route F1 0.82 → 0.95 on student_test) |
-| 8 | Export model and artifacts | Not started |
+| 8 | Export model and artifacts | Done: `artifacts/` (verified: reproduces student_test Top-1 0.9203 from a fresh load) |
 | 9 | FastAPI backend (Laptop 1) | Not started |
 | 10 | Evaluator UI (Laptop 2) | Not started |
 | 11 | Integration testing | Not started |
@@ -36,6 +36,7 @@ pathsnap/
 │   ├── evaluation.py     # Top-1, candidate miss rate, route continuity, row-level metrics
 │   ├── models.py         # the 8 compared model definitions
 │   ├── hmm.py            # HMM states/emissions/transitions, Viterbi, route reconstruction
+│   ├── pipeline.py       # end-to-end inference from artifacts/ + server-side scoring
 │   └── viz.py            # Folium map helpers (GPS, road network, reference/predicted routes)
 ├── scripts/
 │   ├── sweep_candidates.py   # miss rate vs (R, K) on train
@@ -43,7 +44,8 @@ pathsnap/
 │   ├── train_compare.py      # stage 4: 5-fold GroupKFold comparison of 8 models + student_test
 │   ├── tune_hgb.py           # stage 6: Optuna TPE tuning of HistGradientBoosting
 │   ├── tune_lgbm.py          # stage 6: LightGBM search (comparison)
-│   └── hmm_decode.py         # stage 7: OOF probabilities, decoder tuning, HMM vs classifier
+│   ├── hmm_decode.py         # stage 7: OOF probabilities, decoder tuning, HMM vs classifier
+│   └── export_artifacts.py   # stage 8: writes and verifies artifacts/
 ├── notebooks/
 │   ├── 01_eda.ipynb      # dataset exploration (train + student_test partitions)
 │   ├── 02_features.ipynb # labelling, candidate generation, features, baselines
@@ -59,6 +61,7 @@ pathsnap/
 │   ├── features/         # sweep results, config.json, figures, maps (parquet tables are rebuilt, not committed)
 │   ├── models/           # compare/ (stage 4), tuning/ and tuning_lgbm/ (stage 6)
 │   └── hmm/              # stage 7: hmm_config.json, comparison tables, figures, Folium maps
+├── artifacts/            # final model, config, manifest, verification (see artifacts/README.md)
 ├── data/                 # raw dataset (not committed, see below)
 ├── requirements.txt
 └── README.md
@@ -118,6 +121,10 @@ python scripts/hmm_decode.py           # stage 7: about 5 min (OOF probabilities
 ```
 
 Then run notebooks `03` to `05` to rebuild the tables, figures and maps.
+
+```bash
+python scripts/export_artifacts.py     # stage 8: export to artifacts/ and verify (about 10 s)
+```
 
 ## Data partitions and leakage rules
 
