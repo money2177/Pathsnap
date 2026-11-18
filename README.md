@@ -22,7 +22,7 @@ evaluator UI on another.
 | 9 | FastAPI backend (Laptop 1) | Done: `api/` (contract for the UI: `api/API.md`; 20 tests in `tests/`) |
 | 10 | Evaluator UI (Laptop 2) | Done: `ui/web` (React, used in the demo) and `ui/app.py` (Streamlit) |
 | 11 | Integration testing | Done: two laptops on one network, live `/predict` requests logged on Laptop 1 |
-| 12 | Technical report | Done: `Report.pdf` |
+| 12 | Technical report | Done: `11_Report.pdf` |
 
 ## Results (student_test, 10 trips, 19,160 GPS points)
 
@@ -75,7 +75,7 @@ pathsnap/
 ├── api/                  # FastAPI backend (Laptop 1): main.py, schemas.py, API.md (UI contract), examples/
 ├── ui/                   # evaluator UI (Laptop 2): web/ (React + MapLibre), app.py (Streamlit + Folium)
 ├── tests/                # API tests (pytest)
-├── Report.pdf            # technical report
+├── 11_Report.pdf         # technical report
 ├── artifacts/            # final model, config, manifest, verification (see artifacts/README.md)
 ├── data/                 # raw dataset (not committed, see below)
 ├── requirements.txt
