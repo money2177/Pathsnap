@@ -14,9 +14,9 @@ evaluator UI on another.
 | 1 | Understand the problem | Done |
 | 2 | Explore the raw dataset | Done: `notebooks/01_eda.ipynb` |
 | 3 | Data processing and feature engineering | Done: `notebooks/02_features.ipynb` |
-| 4 | Train and compare at least 5 models | Done: `notebooks/03_models.ipynb` (7 models) |
-| 5 | Select the best model | Done: HistGradientBoosting (`03_models.ipynb` section 6) |
-| 6 | Bayesian hyperparameter optimisation | Not started |
+| 4 | Train and compare at least 5 models | Done: `notebooks/03_models.ipynb` (8 models) |
+| 5 | Select the best model | Done: HistGradientBoosting (`03_models.ipynb` section 7) |
+| 6 | Bayesian hyperparameter optimisation | Done: `notebooks/04_tuning.ipynb` (HGB tuned; LightGBM search for comparison) |
 | 7 | HMM and Viterbi route reconstruction | Not started |
 | 8 | Export model and artifacts | Not started |
 | 9 | FastAPI backend (Laptop 1) | Not started |
@@ -107,7 +107,4 @@ Then run `notebooks/02_features.ipynb` the same way as the EDA notebook.
 
 Ground-truth routes for evaluation trips stay server-side and are never sent to the model or the UI.
 
-## AI assistance
 
-Parts of this project were developed with help from an AI coding assistant (Claude Code).
-All experiments were run by the team, and every team member can explain the code and results.

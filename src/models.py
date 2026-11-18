@@ -9,6 +9,7 @@ sampled point keeps all its candidates.
 from __future__ import annotations
 
 import numpy as np
+from lightgbm import LGBMClassifier
 from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
@@ -67,6 +68,17 @@ MODELS = {
                                                      early_stopping=True, validation_fraction=0.1,
                                                      n_iter_no_change=20, scoring="loss", random_state=SEED),
         max_train_rows=None,
+    ),
+    "LightGBM": dict(
+        family="Boosting",
+        config="lr=0.05, num_leaves=31, min_child_samples=20, subsample=0.8, colsample=0.8, "
+               "<=2000 rounds, early stop on 10% trip-grouped val (patience 50, keeps best round)",
+        loss="Binary cross-entropy (log loss)",
+        build=lambda: LGBMClassifier(n_estimators=2000, learning_rate=0.05, num_leaves=31, min_child_samples=20,
+                                     subsample=0.8, subsample_freq=1, colsample_bytree=0.8,
+                                     random_state=SEED, n_jobs=-1, verbose=-1),
+        max_train_rows=None,
+        lgbm=True,
     ),
     "MLP": dict(
         family="Neural network",

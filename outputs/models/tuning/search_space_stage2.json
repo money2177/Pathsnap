@@ -1,0 +1,38 @@
+{
+  "learning_rate": {
+    "distribution": "log-uniform",
+    "low": 0.01,
+    "high": 0.15,
+    "why": "stage-1 top trials used 0.02-0.08"
+  },
+  "max_iter": {
+    "distribution": "int, step 100",
+    "low": 300,
+    "high": 2000,
+    "why": "stage-1 best trials sat at the 800 upper bound"
+  },
+  "max_leaf_nodes": {
+    "distribution": "log-int",
+    "low": 31,
+    "high": 255,
+    "why": "stage-1 top trials used 64-151"
+  },
+  "min_samples_leaf": {
+    "distribution": "log-int",
+    "low": 20,
+    "high": 300,
+    "why": "stage-1 top trials used 39-122"
+  },
+  "l2_regularization": {
+    "distribution": "log-uniform",
+    "low": 0.001,
+    "high": 3.0,
+    "why": "stage-1 top trials used 0.008-0.58"
+  },
+  "max_features": {
+    "distribution": "uniform",
+    "low": 0.45,
+    "high": 0.9,
+    "why": "stage-1 top trials used 0.59-0.80"
+  }
+}

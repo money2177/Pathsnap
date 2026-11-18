@@ -9,3 +9,7 @@ scikit-learn
 pyproj
 shapely>=2.0
 jupyter
+optuna
+pyarrow
+joblib
+lightgbm

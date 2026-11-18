@@ -1,0 +1,10 @@
+12:14:50 trial 0: top1=0.8609 ll=0.0968 (105s) {'learning_rate': 0.03370962431306001, 'max_iter': 800, 'max_leaf_nodes': 84, 'min_samples_leaf': 65, 'l2_regularization': 0.030550893424685692, 'max_features': 0.6681237429283018}
+12:16:44 trial 1: top1=0.8606 ll=0.0979 (114s) {'learning_rate': 0.03807088063642221, 'max_iter': 700, 'max_leaf_nodes': 121, 'min_samples_leaf': 60, 'l2_regularization': 0.1255998217707102, 'max_features': 0.6787147862735762}
+12:18:20 trial 2: top1=0.8606 ll=0.0998 (97s) {'learning_rate': 0.06520590114225763, 'max_iter': 800, 'max_leaf_nodes': 64, 'min_samples_leaf': 122, 'l2_regularization': 0.007920405598637343, 'max_features': 0.7959069037534423}
+12:25:11 trial 3: top1=0.8603 ll=0.1056 (411s) {'learning_rate': 0.02757359293934948, 'max_iter': 2000, 'max_leaf_nodes': 145, 'min_samples_leaf': 100, 'l2_regularization': 0.003487351559952691, 'max_features': 0.5201975341512912}
+12:27:44 trial 4: top1=0.8593 ll=0.0956 (152s) {'learning_rate': 0.011546324619750501, 'max_iter': 900, 'max_leaf_nodes': 74, 'min_samples_leaf': 284, 'l2_regularization': 2.0442544373522407, 'max_features': 0.6060370640733709}
+12:37:18 trial 12: top1=0.8607 ll=0.1014 (136s) {'learning_rate': 0.03662245718337067, 'max_iter': 900, 'max_leaf_nodes': 161, 'min_samples_leaf': 60, 'l2_regularization': 0.06595675222883635, 'max_features': 0.7950007626230047}
+12:43:39 trial 18: top1=0.8603 ll=0.1055 (201s) {'learning_rate': 0.034250443442599886, 'max_iter': 1100, 'max_leaf_nodes': 214, 'min_samples_leaf': 30, 'l2_regularization': 0.09549790414228129, 'max_features': 0.7020548918365882}
+12:43:39 BEST cv top1=0.8609 params={'learning_rate': 0.03370962431306001, 'max_iter': 800, 'max_leaf_nodes': 84, 'min_samples_leaf': 65, 'l2_regularization': 0.030550893424685692, 'max_features': 0.6681237429283018} (search 30.6 min)
+12:43:58 TEST tuned: {'accuracy': 0.968174238557087, 'precision': 0.893318085280183, 'recall': 0.8579049212907275, 'macro_f1': 0.9285069466611748, 'log_loss': 0.07760178799987591, 'top1_accuracy': 0.8805323590814196, 'route_continuity': 0.9691383812010443}
+12:44:24 done

@@ -63,6 +63,19 @@ def fit_mlp(spec, X, y, groups):
     return Pipeline([("scaler", scaler), ("mlp", best)]), hist
 
 
+def fit_lgbm(spec, X, y, groups):
+    """LightGBM with early stopping on a trip-grouped 10% split; predicts with the best round."""
+    import lightgbm as lgb
+    tr, va = next(GroupShuffleSplit(n_splits=1, test_size=0.1, random_state=SEED).split(X, y, groups))
+    model = spec["build"]()
+    model.fit(X[tr], y[tr], eval_set=[(X[tr], y[tr]), (X[va], y[va])], eval_names=["train", "val"],
+              eval_metric="binary_logloss", callbacks=[lgb.early_stopping(50, verbose=False)])
+    ev = model.evals_result_
+    hist = [{"iteration": i + 1, "train_loss": a, "val_loss": b}
+            for i, (a, b) in enumerate(zip(ev["train"]["binary_logloss"], ev["val"]["binary_logloss"]))]
+    return model, hist
+
+
 def fit(name, df):
     spec = MODELS[name]
     d = sample_points(df, spec["max_train_rows"])
@@ -71,6 +84,8 @@ def fit(name, df):
     hist = None
     if spec.get("epochs"):
         model, hist = fit_mlp(spec, X, y, d.trip.to_numpy())
+    elif spec.get("lgbm"):
+        model, hist = fit_lgbm(spec, X, y, d.trip.to_numpy())
     else:
         model = spec["build"]().fit(X, y)
         if name == "HistGradientBoosting":

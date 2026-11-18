@@ -22,3 +22,5 @@ outputs/features/*.parquet
 
 # trained model files from comparisons (large; rebuild with scripts/train_compare.py)
 outputs/models/compare/*.joblib
+outputs/models/tuning/*.joblib
+outputs/models/tuning_lgbm/*.joblib
