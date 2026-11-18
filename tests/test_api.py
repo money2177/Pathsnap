@@ -9,7 +9,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 import api.main as M
-from src.data_io import REPO_ROOT, Trip
+from src.data_io import DATA_ROOT, REPO_ROOT, Trip
 
 VERIFY = {r["trip"]: r for r in json.load(open(os.path.join(REPO_ROOT, "artifacts", "verification.json")))["per_trip"]}
 
@@ -69,7 +69,7 @@ def test_trip_without_reference_is_predicted_but_unscored(tmp_path, monkeypatch)
     d = tmp_path / "eval_no_route" / "00000077"
     d.mkdir(parents=True)
     for ext in ("track", "nodes", "arcs"):
-        shutil.copy(os.path.join(REPO_ROOT, "data", "student_test", "00000077", f"00000077.{ext}"), d)
+        shutil.copy(os.path.join(DATA_ROOT, "student_test", "00000077", f"00000077.{ext}"), d)
     monkeypatch.setattr(M, "EVAL_DIR", str(tmp_path / "eval_no_route"))
     monkeypatch.setattr(M, "ROOT", str(tmp_path))
     monkeypatch.setattr(M, "EVAL_SET", "eval_no_route")

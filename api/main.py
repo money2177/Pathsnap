@@ -6,7 +6,7 @@ server-side against the reference route. The reference route is never returned.
 
 Configuration (environment variables):
     PATHSNAP_EVAL_DIR   folder containing one sub-folder per trip (<id>/<id>.track/.nodes/.arcs[/.route])
-                        default: <repo>/data/student_test
+                        default: <PATHSNAP_DATA or <repo>/data>/student_test
     PATHSNAP_ARTIFACTS  exported artifacts folder, default: <repo>/artifacts
     PATHSNAP_LOG        log file, default: <repo>/api/logs/api.log
 
@@ -28,11 +28,11 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.schemas import Error, Health, PredictRequest, PredictResponse, Track, TripInfo, TripList
-from src.data_io import REPO_ROOT, Trip
+from src.data_io import DATA_ROOT, REPO_ROOT, Trip
 from src.hmm import reconstruct_route
 from src.pipeline import InferenceTrip, PathSnapPipeline, score_prediction
 
-EVAL_DIR = os.path.abspath(os.environ.get("PATHSNAP_EVAL_DIR", os.path.join(REPO_ROOT, "data", "student_test")))
+EVAL_DIR = os.path.abspath(os.environ.get("PATHSNAP_EVAL_DIR", os.path.join(DATA_ROOT, "student_test")))
 ARTIFACTS = os.environ.get("PATHSNAP_ARTIFACTS", os.path.join(REPO_ROOT, "artifacts"))
 LOG_FILE = os.environ.get("PATHSNAP_LOG", os.path.join(REPO_ROOT, "api", "logs", "api.log"))
 ROOT, EVAL_SET = os.path.dirname(EVAL_DIR), os.path.basename(EVAL_DIR)

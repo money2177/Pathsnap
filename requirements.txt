@@ -1,19 +1,29 @@
-numpy
-pandas
-matplotlib
-seaborn
-folium
-networkx
-scipy
-scikit-learn==1.9.1   # pinned: artifacts/model/hgb_tuned.joblib was saved with this version
-pyproj
-shapely>=2.0
-jupyter
-optuna
-pyarrow
-joblib
-lightgbm
-fastapi
-uvicorn[standard]
-httpx
-pytest
+# Exact versions verified in a clean environment (fresh clone + new venv, Python 3.14):
+# all API tests pass, and the model rebuilt from raw data is bit-identical to artifacts/.
+
+# data and geometry
+numpy==2.5.5
+pandas==3.1.1
+pyarrow==26.0.1
+scipy==1.18.1
+shapely==2.2.0
+pyproj==3.8.0
+networkx==3.7
+
+# models (scikit-learn must match: artifacts/model/hgb_tuned.joblib was saved with 1.9.1)
+scikit-learn==1.9.1
+joblib==1.6.0
+lightgbm==4.7.0
+optuna==5.1.0
+
+# plots, maps and notebooks
+matplotlib==3.11.2
+seaborn==0.13.2
+folium==1.0.0
+jupyter==1.1.1
+
+# API (Laptop 1) and tests
+fastapi==0.163.2
+uvicorn[standard]==0.54.0
+httpx==0.28.1
+pytest==9.2.0
