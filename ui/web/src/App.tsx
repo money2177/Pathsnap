@@ -1,3 +1,4 @@
+import { formatTripDuration } from './utils/time';
 import { useState } from 'react';
 import { ArrowUpRight, Check, ChevronDown, Layers3, LoaderCircle, LocateFixed, MapPin, Navigation, RefreshCw, Route, Settings2, WifiOff } from 'lucide-react';
 import { useEvaluator } from './hooks/useEvaluator';
@@ -46,7 +47,7 @@ export default function App() {
       </select><ChevronDown size={14}/></div>
       <button className="icon-button refresh" aria-label="Refresh trip list" title="Refresh trip list" onClick={evaluator.refresh} disabled={busy || evaluator.connection === 'checking'}><RefreshCw size={16} className={evaluator.connection === 'checking' ? 'spin' : ''}/></button>
      </div>
-     {trip && <div className="trip-facts"><div><strong>{trip.n_points.toLocaleString()}</strong><span>GPS points</span></div>{trip.duration_s !== undefined && <div><strong>{trip.duration_s.toLocaleString(undefined,{maximumFractionDigits:1})}<small> s</small></strong><span>Trip duration</span></div>}</div>}
+     {trip && <div className="trip-facts"><div><strong>{trip.n_points.toLocaleString()}</strong><span>GPS points</span></div>{trip.duration_s !== undefined && <div><strong>{formatTripDuration(trip.duration_s)}</strong><span>Recorded trip duration</span></div>}</div>}
      {connected && !evaluator.trips.length && <p className="hint">No evaluation trips found. Verify the backend points to the folder containing trip directories, then refresh.</p>}
      <button className="primary run-button" onClick={evaluator.run} disabled={!connected || !trip || busy || loading}>
       {busy ? <LoaderCircle size={17} className="spin"/> : <Route size={17}/>}
