@@ -16,3 +16,6 @@ data/
 
 # secrets
 .env
+
+# large generated feature tables (rebuild with: python scripts/build_features.py)
+outputs/features/*.parquet
