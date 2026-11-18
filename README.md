@@ -161,6 +161,60 @@ truth leaks, that bad or path-traversal trip ids are rejected, and that trips wi
 3. From Laptop 2, check it with `curl http://192.168.1.23:8000/health` or open `/docs` in a browser.
 4. If it times out: allow incoming connections for Python in Laptop 1's firewall (macOS: System Settings → Network → Firewall).
 
+## Running the UI (Laptop 2)
+
+### React route evaluator
+
+Requires Node.js 20.19+ or 22.12+ and pnpm. From the repository root:
+
+```bash
+cd ui/web
+pnpm install
+pnpm dev
+```
+
+Open http://127.0.0.1:5173. In **Settings**, enter the FastAPI base URL printed on Laptop 1.
+The default http://127.0.0.1:8000 connects to a backend on the same computer.
+For a two-laptop evaluation, use http://<laptop-1-ip>:8000 with the actual LAN address.
+
+Start FastAPI on Laptop 1 using `python -m api`. Both laptops must share a network that allows
+device-to-device connections. On Windows, `ipconfig` shows the active adapter's IPv4 address.
+From Laptop 2, open the backend's /health endpoint to verify connectivity, then check the
+connection in Settings, select a trip, and click **Run map-matching**.
+
+Every Run sends a fresh prediction request. Scores, timings and the request ID come from the
+backend. The request ID can be checked in the Laptop 1 logs. Trip or backend changes clear
+the previous result. Reference routes and raw datasets are accessed only by the backend.
+
+Run `pnpm test` for frontend contract tests, `pnpm build` for the production build, and
+`pnpm preview` to preview the built frontend. Further details are in [ui/web/README.md](ui/web/README.md).
+
+### Streamlit evaluator
+
+From the repository root, using Python 3.10 or newer:
+
+```bash
+python -m pip install -r ui/requirements.txt
+streamlit run ui/app.py
+```
+
+### Connection troubleshooting
+
+If a request fails, confirm the server is running and check its address, port and firewall.
+A shared hotspot can help if campus Wi-Fi blocks device-to-device traffic. HTTP 500 and
+prediction timeouts should be checked against the Laptop 1 logs. An HTTPS frontend needs
+an HTTPS API or an appropriately configured proxy.
+
+If the Windows backend reports a checksum mismatch for artifacts/config.json, check that
+its checkout preserves the original LF line endings. The backend verifies artifact bytes
+before starting. This is a backend setup concern.
+
+OpenStreetMap basemap tiles require internet access. Route overlays can still appear if
+tiles fail. The React map requires WebGL and hardware acceleration in the browser.
+
+**UI AI-assistance disclosure.** OpenAI Codex assisted with the Streamlit and React
+evaluator interfaces, API integration, and verification.
+
 ## Data partitions and leakage rules
 
 | Partition | Trips | Used for |
