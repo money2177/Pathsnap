@@ -12,6 +12,8 @@ COLORS = {
     "reference": "#1a9e3a",
     "predicted": "#e8590c",
     "gap": "#c2255c",
+    "classifier": "#7048e8",
+    "wrong": "#e03131",
 }
 
 
@@ -71,7 +73,11 @@ def trip_map(
     show_network: bool = True,
     gap_threshold_s: float = 5.0,
     gps_every: int = 1,
+    routes: dict | None = None,
+    wrong_points: dict | None = None,
 ) -> folium.Map:
+    """routes: {layer name: (arc ids, colour)} extra predicted routes (e.g. classifier-only vs HMM).
+    wrong_points: {layer name: (GPS point indices, colour)} observations matched to a wrong arc."""
     tr = trip.track
     m = base_map()
     m.fit_bounds([[tr.lat.min(), tr.lon.min()], [tr.lat.max(), tr.lon.max()]])
@@ -95,12 +101,26 @@ def trip_map(
         fg.add_to(m)
         legend["Predicted route"] = COLORS["predicted"]
 
+    for name, (arcs, color) in (routes or {}).items():
+        fg = folium.FeatureGroup(name, show=True)
+        folium.PolyLine(arcs_to_lines(trip, arcs), color=color, weight=3, opacity=0.9).add_to(fg)
+        fg.add_to(m)
+        legend[name] = color
+
     fg = folium.FeatureGroup("Raw GPS observations (.track)", show=True)
     for r in tr.iloc[::gps_every].itertuples():
         folium.CircleMarker([r.lat, r.lon], radius=2, color=COLORS["gps"], fill=True, fill_opacity=0.8,
                             weight=0, tooltip=f"t={r.t:.0f}s").add_to(fg)
     fg.add_to(m)
     legend["Raw GPS"] = COLORS["gps"]
+
+    for name, (idx, color) in (wrong_points or {}).items():
+        fg = folium.FeatureGroup(name, show=False)
+        for i in idx:
+            folium.CircleMarker([tr.lat.iloc[i], tr.lon.iloc[i]], radius=4, color=color, fill=True, fill_opacity=0.9,
+                                weight=0, tooltip=f"point {i}").add_to(fg)
+        fg.add_to(m)
+        legend[name] = color
 
     dt = np.diff(tr.t.to_numpy())
     gaps = np.flatnonzero(dt > gap_threshold_s)

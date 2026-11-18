@@ -1,0 +1,149 @@
+{
+  "classifier": "HistGradientBoosting (tuned, stage 6)",
+  "classifier_params": {
+    "learning_rate": 0.03370962431306001,
+    "max_iter": 800,
+    "max_leaf_nodes": 84,
+    "min_samples_leaf": 65,
+    "l2_regularization": 0.030550893424685692,
+    "max_features": 0.6681237429283018
+  },
+  "hmm_params": {
+    "emission_weight": 0.488855003797626,
+    "beta": 60.302936144790216,
+    "break_cost": 5.659305404752567,
+    "uturn_cost": 27.4834301558456,
+    "gap_s": 57.727620239780336,
+    "prob_floor": 0.0001
+  },
+  "default_params": {
+    "emission_weight": 1.0,
+    "beta": 20.0,
+    "break_cost": 30.0,
+    "uturn_cost": 2.0,
+    "gap_s": 60.0,
+    "prob_floor": 0.0001
+  },
+  "constants": {
+    "BACKWARD_TOL_M": 8.0,
+    "ROUTE_FACTOR": 3.0,
+    "MIN_SEARCH_M": 400.0,
+    "MAX_SEARCH_M": 8000.0,
+    "gps_sigma_geometric_m": 5.0
+  },
+  "search": {
+    "objective": "point-level Top-1 accuracy on train out-of-fold probabilities (78 reliable trips)",
+    "sampler": "TPE(seed=42, 12 startup)",
+    "n_trials": 60,
+    "search_seconds": 102.89357900619507,
+    "best_value": 0.9187384044526902,
+    "best_fold_top1": [
+      0.875845665961945,
+      0.9364392678868553,
+      0.9560525534842312,
+      0.9086345947775083,
+      0.919068179536098
+    ],
+    "space": {
+      "emission_weight": "log-uniform 0.1-5",
+      "beta": "log-uniform 2-200 m",
+      "break_cost": "log-uniform 0.5-200 (widened from 5-200: first search hit 5)",
+      "uturn_cost": "uniform 0-30 (widened from 0-10: first search hit 9.2)",
+      "gap_s": "log-uniform 10-600 s"
+    }
+  },
+  "lattice_build_seconds": {
+    "train": 13.64878797531128,
+    "student_test": 1.418351173400879
+  },
+  "results": {
+    "train_oof/classifier_only": {
+      "top1_accuracy": 0.8594892502455528,
+      "route_continuity": 0.9679292524936806,
+      "network_connectivity": 0.9807803587218215,
+      "route_precision": 0.6248135192245285,
+      "route_recall": 0.9959404517288216,
+      "route_f1": 0.7471957143218534,
+      "trip_mean_route_f1": 0.7507341042579948,
+      "unjoinable_transitions": 1052,
+      "decode_ms_per_1k_points": 0.00051909316305535
+    },
+    "train_oof/hmm_geometric_emission": {
+      "top1_accuracy": 0.9080268471024774,
+      "route_continuity": 0.9875176990543958,
+      "network_connectivity": 0.9907545803223349,
+      "route_precision": 0.7909540036053019,
+      "route_recall": 0.992369651630624,
+      "route_f1": 0.867622403161776,
+      "trip_mean_route_f1": 0.865553443889137,
+      "unjoinable_transitions": 248,
+      "decode_ms_per_1k_points": 9.476463307879525
+    },
+    "train_oof/hmm_default_params": {
+      "top1_accuracy": 0.9061715595329041,
+      "route_continuity": 0.9934471382116431,
+      "network_connectivity": 0.9957687428130148,
+      "route_precision": 0.8752652878375105,
+      "route_recall": 0.9916212392458971,
+      "route_f1": 0.9222245271708578,
+      "trip_mean_route_f1": 0.9357410826540897,
+      "unjoinable_transitions": 101,
+      "decode_ms_per_1k_points": 9.293278062706573
+    },
+    "train_oof/hmm_tuned": {
+      "top1_accuracy": 0.9187384044526902,
+      "route_continuity": 0.9922025601937888,
+      "network_connectivity": 0.9941466505612837,
+      "route_precision": 0.8604768521705914,
+      "route_recall": 0.9921108198820784,
+      "route_f1": 0.9121721369363333,
+      "trip_mean_route_f1": 0.9228582167676647,
+      "unjoinable_transitions": 113,
+      "decode_ms_per_1k_points": 9.310379515409235
+    },
+    "student_test/classifier_only": {
+      "top1_accuracy": 0.8805323590814196,
+      "route_continuity": 0.9691375549310789,
+      "network_connectivity": 0.9862136739715472,
+      "route_precision": 0.7082637355162749,
+      "route_recall": 0.9981191337570161,
+      "route_f1": 0.8216720179543996,
+      "trip_mean_route_f1": 0.7937681412068931,
+      "unjoinable_transitions": 71,
+      "decode_ms_per_1k_points": 0.0036832932888341595
+    },
+    "student_test/hmm_geometric_emission": {
+      "top1_accuracy": 0.8971294363256785,
+      "route_continuity": 0.9891370581883504,
+      "network_connectivity": 0.9979633509376052,
+      "route_precision": 0.8503220338626879,
+      "route_recall": 0.9963259413497535,
+      "route_f1": 0.9139304607662924,
+      "trip_mean_route_f1": 0.9051951368357105,
+      "unjoinable_transitions": 4,
+      "decode_ms_per_1k_points": 9.460227723410334
+    },
+    "student_test/hmm_default_params": {
+      "top1_accuracy": 0.9127870563674322,
+      "route_continuity": 0.9955084392220837,
+      "network_connectivity": 0.9993735003679168,
+      "route_precision": 0.9433344087064552,
+      "route_recall": 0.9969471671588447,
+      "route_f1": 0.9688092718940993,
+      "trip_mean_route_f1": 0.9717066492910034,
+      "unjoinable_transitions": 3,
+      "decode_ms_per_1k_points": 9.571610014722342
+    },
+    "student_test/hmm_tuned": {
+      "top1_accuracy": 0.9203027139874739,
+      "route_continuity": 0.9941508514329778,
+      "network_connectivity": 0.9985900387715823,
+      "route_precision": 0.9165208110523576,
+      "route_recall": 0.9984912688184091,
+      "route_f1": 0.9546749096605175,
+      "trip_mean_route_f1": 0.9472311027238847,
+      "unjoinable_transitions": 3,
+      "decode_ms_per_1k_points": 9.519073311122822
+    }
+  }
+}

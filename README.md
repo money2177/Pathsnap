@@ -17,7 +17,7 @@ evaluator UI on another.
 | 4 | Train and compare at least 5 models | Done: `notebooks/03_models.ipynb` (8 models) |
 | 5 | Select the best model | Done: HistGradientBoosting (`03_models.ipynb` section 7) |
 | 6 | Bayesian hyperparameter optimisation | Done: `notebooks/04_tuning.ipynb` (HGB tuned; LightGBM search for comparison) |
-| 7 | HMM and Viterbi route reconstruction | Not started |
+| 7 | HMM and Viterbi route reconstruction | Done: `notebooks/05_hmm.ipynb` (Top-1 0.8805 → 0.9203, route F1 0.82 → 0.95 on student_test) |
 | 8 | Export model and artifacts | Not started |
 | 9 | FastAPI backend (Laptop 1) | Not started |
 | 10 | Evaluator UI (Laptop 2) | Not started |
@@ -33,20 +33,32 @@ pathsnap/
 │   ├── labels.py         # per-point ground-truth arc via order-preserving alignment to .route
 │   ├── candidates.py     # road graph per trip + candidate arcs (radius R, nearest K)
 │   ├── features.py       # 26 features per (GPS point, candidate arc) pair
+│   ├── evaluation.py     # Top-1, candidate miss rate, route continuity, row-level metrics
+│   ├── models.py         # the 8 compared model definitions
+│   ├── hmm.py            # HMM states/emissions/transitions, Viterbi, route reconstruction
 │   └── viz.py            # Folium map helpers (GPS, road network, reference/predicted routes)
 ├── scripts/
 │   ├── sweep_candidates.py   # miss rate vs (R, K) on train
-│   └── build_features.py     # builds outputs/features/{train,student_test}.parquet
+│   ├── build_features.py     # builds outputs/features/{train,student_test}.parquet
+│   ├── train_compare.py      # stage 4: 5-fold GroupKFold comparison of 8 models + student_test
+│   ├── tune_hgb.py           # stage 6: Optuna TPE tuning of HistGradientBoosting
+│   ├── tune_lgbm.py          # stage 6: LightGBM search (comparison)
+│   └── hmm_decode.py         # stage 7: OOF probabilities, decoder tuning, HMM vs classifier
 ├── notebooks/
 │   ├── 01_eda.ipynb      # dataset exploration (train + student_test partitions)
-│   └── 02_features.ipynb # labelling, candidate generation, features, baselines
+│   ├── 02_features.ipynb # labelling, candidate generation, features, baselines
+│   ├── 03_models.ipynb   # model comparison (stage 4) and selection (stage 5)
+│   ├── 04_tuning.ipynb   # Bayesian optimisation (stage 6)
+│   └── 05_hmm.ipynb      # HMM / Viterbi route reconstruction (stage 7)
 ├── outputs/
 │   └── eda/
 │       ├── figures/      # PNG figures used in the report
 │       ├── maps/         # interactive Folium HTML maps
 │       ├── trip_summary.csv
 │       └── trip_flags.csv
-│   └── features/         # sweep results, config.json, figures, maps (parquet tables are rebuilt, not committed)
+│   ├── features/         # sweep results, config.json, figures, maps (parquet tables are rebuilt, not committed)
+│   ├── models/           # compare/ (stage 4), tuning/ and tuning_lgbm/ (stage 6)
+│   └── hmm/              # stage 7: hmm_config.json, comparison tables, figures, Folium maps
 ├── data/                 # raw dataset (not committed, see below)
 ├── requirements.txt
 └── README.md
@@ -96,6 +108,16 @@ python scripts/build_features.py     # about 10 s; writes outputs/features/*.par
 ```
 
 Then run `notebooks/02_features.ipynb` the same way as the EDA notebook.
+
+## Models, tuning and route reconstruction
+
+```bash
+python scripts/train_compare.py        # stage 4: 8 models, about 10 min
+python scripts/tune_hgb.py             # stage 6: HGB search, round 1 (then --stage2 for the refined round)
+python scripts/hmm_decode.py           # stage 7: about 5 min (OOF probabilities, 60 decoder trials, evaluation)
+```
+
+Then run notebooks `03` to `05` to rebuild the tables, figures and maps.
 
 ## Data partitions and leakage rules
 
