@@ -1,0 +1,38 @@
+{
+  "model": "SVM_RBF",
+  "family": "Kernel-based",
+  "config": "RBF, C=1.0, gamma='scale', Platt-scaled probabilities, standardised",
+  "loss": "Hinge loss + L2 (probabilities via Platt sigmoid)",
+  "n_train_rows": 19787,
+  "train_time_s": 4.624764919281006,
+  "inference_time_s": 11.335429191589355,
+  "inference_ms_per_1k_rows": 77.15112602749264,
+  "confusion_matrix": [
+    [
+      126085,
+      1719
+    ],
+    [
+      4018,
+      15103
+    ]
+  ],
+  "history": null,
+  "last_fold_train_metrics": {
+    "accuracy": 0.9600763142330137,
+    "precision": 0.9003511887302506,
+    "recall": 0.7999450611370936,
+    "macro_f1": 0.9121111758154393,
+    "log_loss": 0.12193136510818342,
+    "top1_accuracy": 0.8570113788487282
+  },
+  "test": {
+    "accuracy": 0.9609528671090692,
+    "precision": 0.8978123885388182,
+    "recall": 0.7898645468333246,
+    "macro_f1": 0.9090708572644745,
+    "log_loss": 0.12033745743652426,
+    "top1_accuracy": 0.8542275574112735,
+    "route_continuity": 0.9595822454308094
+  }
+}

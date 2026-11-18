@@ -1,0 +1,56 @@
+10:45:41 train rows 423,491 (78 trips, 60,258 points); student_test rows 146,925
+10:45:41 === GaussianNB ===
+10:45:43   fold 0: top1=0.5589 macroF1=0.7778 logloss=1.8080 cont=0.8955 (0.6s)
+10:45:46   fold 1: top1=0.6091 macroF1=0.8065 logloss=1.2942 cont=0.8640 (0.6s)
+10:45:49   fold 2: top1=0.5651 macroF1=0.7900 logloss=1.6908 cont=0.9109 (0.6s)
+10:45:50   fold 3: top1=0.5913 macroF1=0.8021 logloss=1.4101 cont=0.9078 (0.6s)
+10:45:53   fold 4: top1=0.5583 macroF1=0.7809 logloss=1.9845 cont=0.9123 (0.6s)
+10:45:56   TEST: top1=0.5515 macroF1=0.7893 logloss=1.5426 cont=0.9048 train=0.7s infer=0.20s
+10:45:56 === HistGradientBoosting ===
+10:45:58   fold 0: top1=0.8193 macroF1=0.8944 logloss=0.1298 cont=0.9568 (2.1s)
+10:46:00   fold 1: top1=0.8937 macroF1=0.9327 logloss=0.0750 cont=0.9574 (2.1s)
+10:46:03   fold 2: top1=0.9216 macroF1=0.9529 logloss=0.0635 cont=0.9738 (2.5s)
+10:46:08   fold 3: top1=0.8346 macroF1=0.9105 logloss=0.1083 cont=0.9573 (4.5s)
+10:46:10   fold 4: top1=0.8099 macroF1=0.8870 logloss=0.1363 cont=0.9628 (1.6s)
+10:46:13   TEST: top1=0.8667 macroF1=0.9228 logloss=0.0882 cont=0.9566 train=1.7s infer=0.08s
+10:46:13 === MLP ===
+10:46:21   fold 0: top1=0.8201 macroF1=0.8924 logloss=0.1310 cont=0.9618 (8.6s)
+10:46:25   fold 1: top1=0.8860 macroF1=0.9265 logloss=0.0815 cont=0.9573 (3.5s)
+10:46:30   fold 2: top1=0.9167 macroF1=0.9462 logloss=0.0706 cont=0.9741 (5.4s)
+10:46:40   fold 3: top1=0.8320 macroF1=0.9072 logloss=0.1079 cont=0.9607 (9.5s)
+10:46:45   fold 4: top1=0.8070 macroF1=0.8810 logloss=0.1462 cont=0.9657 (5.4s)
+10:46:52   TEST: top1=0.8718 macroF1=0.9211 logloss=0.0852 cont=0.9637 train=6.5s infer=0.01s
+10:46:52 === RandomForest ===
+10:47:31   fold 0: top1=0.8199 macroF1=0.8961 logloss=0.1240 cont=0.9592 (37.9s)
+10:48:08   fold 1: top1=0.8894 macroF1=0.9327 logloss=0.0747 cont=0.9550 (35.8s)
+10:48:51   fold 2: top1=0.9204 macroF1=0.9532 logloss=0.0657 cont=0.9751 (42.5s)
+10:49:35   fold 3: top1=0.8335 macroF1=0.9126 logloss=0.0980 cont=0.9596 (42.9s)
+10:50:27   fold 4: top1=0.8101 macroF1=0.8867 logloss=0.1339 cont=0.9641 (51.6s)
+10:51:34   TEST: top1=0.8705 macroF1=0.9249 logloss=0.0834 cont=0.9630 train=62.8s infer=0.42s
+10:51:36 === KNN ===
+10:51:56   fold 0: top1=0.7996 macroF1=0.8794 logloss=0.1993 cont=0.9480 (0.0s)
+10:52:16   fold 1: top1=0.8714 macroF1=0.9160 logloss=0.1163 cont=0.9465 (0.0s)
+10:52:39   fold 2: top1=0.9000 macroF1=0.9283 logloss=0.1131 cont=0.9692 (0.0s)
+10:52:58   fold 3: top1=0.8153 macroF1=0.8959 logloss=0.1564 cont=0.9530 (0.0s)
+10:53:17   fold 4: top1=0.7930 macroF1=0.8706 logloss=0.2055 cont=0.9576 (0.0s)
+10:55:05   TEST: top1=0.8499 macroF1=0.9063 logloss=0.1271 cont=0.9584 train=0.0s infer=14.24s
+10:55:06 === SVM_RBF ===
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+10:55:32   fold 0: top1=0.8053 macroF1=0.8810 logloss=0.1610 cont=0.9500 (5.3s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+10:55:59   fold 1: top1=0.8766 macroF1=0.9184 logloss=0.1141 cont=0.9472 (5.5s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+10:56:25   fold 2: top1=0.9027 macroF1=0.9286 logloss=0.1062 cont=0.9669 (5.3s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+10:56:49   fold 3: top1=0.8223 macroF1=0.8971 logloss=0.1321 cont=0.9521 (4.5s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+10:57:12   fold 4: top1=0.7979 macroF1=0.8722 logloss=0.1746 cont=0.9596 (4.4s)
+/Users/abhishekaithal/Documents/SEM 5/ML/ML HACKATHON/.venv/lib/python3.14/site-packages/sklearn/svm/_base.py:236: FutureWarning: The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`
+  warnings.warn(
+10:58:38   TEST: top1=0.8542 macroF1=0.9091 logloss=0.1203 cont=0.9596 train=4.6s infer=11.34s
+10:58:38 done

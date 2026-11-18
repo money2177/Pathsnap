@@ -14,8 +14,8 @@ evaluator UI on another.
 | 1 | Understand the problem | Done |
 | 2 | Explore the raw dataset | Done: `notebooks/01_eda.ipynb` |
 | 3 | Data processing and feature engineering | Done: `notebooks/02_features.ipynb` |
-| 4 | Train and compare at least 5 models | Not started |
-| 5 | Select the best model | Not started |
+| 4 | Train and compare at least 5 models | Done: `notebooks/03_models.ipynb` (7 models) |
+| 5 | Select the best model | Done: HistGradientBoosting (`03_models.ipynb` section 6) |
 | 6 | Bayesian hyperparameter optimisation | Not started |
 | 7 | HMM and Viterbi route reconstruction | Not started |
 | 8 | Export model and artifacts | Not started |

@@ -19,3 +19,6 @@ data/
 
 # large generated feature tables (rebuild with: python scripts/build_features.py)
 outputs/features/*.parquet
+
+# trained model files from comparisons (large; rebuild with scripts/train_compare.py)
+outputs/models/compare/*.joblib

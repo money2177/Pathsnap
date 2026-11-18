@@ -1,0 +1,38 @@
+{
+  "model": "GaussianNB",
+  "family": "Probabilistic (generative)",
+  "config": "var_smoothing=1e-9, quantile-normal transformed inputs",
+  "loss": "Maximum likelihood of class-conditional Gaussians",
+  "n_train_rows": 423491,
+  "train_time_s": 0.7400360107421875,
+  "inference_time_s": 0.19895172119140625,
+  "inference_ms_per_1k_rows": 1.3541039386857667,
+  "confusion_matrix": [
+    [
+      111293,
+      16511
+    ],
+    [
+      1785,
+      17336
+    ]
+  ],
+  "history": null,
+  "last_fold_train_metrics": {
+    "accuracy": 0.8751397031812862,
+    "precision": 0.5286960057085014,
+    "recall": 0.8976094551191751,
+    "macro_f1": 0.7943452277996692,
+    "log_loss": 1.5673915147781372,
+    "top1_accuracy": 0.5818342815707274
+  },
+  "test": {
+    "accuracy": 0.875473881231921,
+    "precision": 0.512187195320117,
+    "recall": 0.9066471418858846,
+    "macro_f1": 0.7893148490353682,
+    "log_loss": 1.5425536632537842,
+    "top1_accuracy": 0.5514613778705637,
+    "route_continuity": 0.9047519582245431
+  }
+}

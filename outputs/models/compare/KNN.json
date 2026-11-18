@@ -1,0 +1,38 @@
+{
+  "model": "KNN",
+  "family": "Instance-based",
+  "config": "k=25, distance-weighted, Euclidean, standardised",
+  "loss": "None (lazy learner; vote of neighbours)",
+  "n_train_rows": 150574,
+  "train_time_s": 0.014858007431030273,
+  "inference_time_s": 14.241524934768677,
+  "inference_ms_per_1k_rows": 96.93057638093364,
+  "confusion_matrix": [
+    [
+      125779,
+      2025
+    ],
+    [
+      3942,
+      15179
+    ]
+  ],
+  "history": null,
+  "last_fold_train_metrics": {
+    "accuracy": 0.9661711243389981,
+    "precision": 0.9133128843812137,
+    "recall": 0.8346903702034146,
+    "macro_f1": 0.9263690644499679,
+    "log_loss": 0.1068000040842406,
+    "top1_accuracy": 0.8775797634984382
+  },
+  "test": {
+    "accuracy": 0.9593874425727412,
+    "precision": 0.8822948151592653,
+    "recall": 0.7938392343496679,
+    "macro_f1": 0.9062812001560998,
+    "log_loss": 0.12709038175969395,
+    "top1_accuracy": 0.8498956158663883,
+    "route_continuity": 0.9583812010443864
+  }
+}
